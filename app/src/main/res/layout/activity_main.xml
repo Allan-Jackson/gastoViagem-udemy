@@ -71,6 +71,7 @@
         android:textSize="20sp" />
 
     <TextView
+        android:id="@+id/textViewRS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -82,12 +83,14 @@
         android:textStyle="bold" />
 
     <Button
+        android:id="@+id/buttonCalculate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/lightGreen"
-        android:padding="25dp"
+        android:padding="20dp"
         android:text="@string/calcular"
         android:textAllCaps="true"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:onClick="teste" />
 </LinearLayout>

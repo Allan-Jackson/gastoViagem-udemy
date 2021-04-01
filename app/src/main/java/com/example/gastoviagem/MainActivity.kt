@@ -3,9 +3,11 @@ package com.example.gastoviagem
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 //import android.widget.Button
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.NumberFormatException
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,12 +34,50 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             buttonCalculate -> calculate()
             textViewRS -> calculate()
         }*/
-        if(R.id.buttonCalculate == view.id)
+        if (R.id.buttonCalculate == view.id)
             calculate()
     }
-    private fun calculate(){
+
+    private fun calculate() {
+        try {
+            if (validateOK()) {
+                val distance = textDistance.text.toString().toFloat()
+                val price = textPrice.text.toString().toFloat()
+                val autonomy = textAutonomy.text.toString().toFloat()
+                val totalValue = distance * price / autonomy
+                textViewRS.text =
+                    "R$ ${"%.2f".format(totalValue)}" //editText recebem um Editable como valor no text, diferente do textView
+            } else {
+                Toast.makeText(this, "Todos os campos devem ser preenchidos", Toast.LENGTH_LONG)
+                    .show()
+            }
+        } catch (e: NumberFormatException) {
+            val t = Toast.makeText(
+                this,
+                "Os valores devem ser válidos",
+                Toast.LENGTH_LONG
+            ) //retorna um objeto Toast
+            t.show() //não esquecer de mostrar o Toast
+        }
+
 
     }
 
+    private fun validateOK(): Boolean {
+
+        if (textDistance.text.toString() != "" &&
+            textAutonomy.text.toString() != "" &&
+            textPrice.text.toString() != ""
+        ) {
+            if (textDistance.text.toString() == "0" ||
+                textAutonomy.text.toString() == "0" ||
+                textPrice.text.toString() == "0"
+            ) {
+                throw NumberFormatException("Os valores não podem ser zeros")
+            }
+            return true
+        }
+        return false
+    }
 
 }

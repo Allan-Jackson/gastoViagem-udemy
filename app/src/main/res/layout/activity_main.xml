@@ -9,6 +9,7 @@
     tools:context=".MainActivity">
 
     <EditText
+        android:id="@+id/textDistance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -27,6 +28,7 @@
         android:textSize="15sp" />
 
     <EditText
+        android:id="@+id/textPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/preco"
@@ -44,10 +46,11 @@
         android:textSize="15sp" />
 
     <EditText
+        android:id="@+id/textAutonomy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/autonomia"
-        android:imeOptions="actionNext"
+        android:imeOptions="actionDone"
         android:inputType="numberDecimal"
         android:textSize="20sp" />
 
